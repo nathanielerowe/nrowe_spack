@@ -21,6 +21,7 @@
 # ----------------------------------------------------------------------------
 
 from spack import *
+from spack.package import *
 
 
 class PyGfal2Util(PythonPackage):

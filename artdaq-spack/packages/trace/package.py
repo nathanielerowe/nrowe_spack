@@ -10,6 +10,7 @@ from spack.util.environment import EnvironmentModifications
 from llnl.util.filesystem import join_path
 
 from spack import *
+from spack.package import *
 
 def sanitize_environments(env, *vars):
     for var in vars:

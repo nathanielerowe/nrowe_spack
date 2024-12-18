@@ -1,4 +1,5 @@
 from spack import *
+from spack.package import *
 
 
 class PyMeld3(PythonPackage):
