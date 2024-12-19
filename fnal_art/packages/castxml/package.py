@@ -56,15 +56,9 @@ class Castxml(CMakePackage):
     patch("std.patch", when="@0.5.1")
 
     def cmake_args(self):
-        # FIXME: Add arguments other than
-        # FIXME: CMAKE_INSTALL_PREFIX and CMAKE_BUILD_TYPE
-        # FIXME: If not needed delete this function
-        print(self.spec.variants)
+        print(self.spec["llvm"].prefix.lib.clang + self.spec["llvm"].version)
         args = [
             "-DCMAKE_CXX_FLAGS=-std=c++{0}".format(self.spec.variants["cxxstd"].value),
-            # "-DCXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
-            # "-DCXX_STANDARD_REQUIRED=YES",
-            #"-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
-            "-DCLANG_RESOURCE_DIR=/lus/grand/projects/neutrinoGPU/software/fermi-spack-Jul7/spack/opt/spack/linux-sles15-zen3/gcc-12.3.0/llvm-16.0.6-zanp2vv54awhoda5o77n7qurzbdyk4me/lib/clang/16/"
+            "-DCLANG_RESOURCE_DIR={}".format(self.spec["llvm"].prefix.lib.clang + self.spec["llvm"].version)
         ]
         return args

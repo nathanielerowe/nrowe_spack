@@ -61,7 +61,7 @@ class Wirecell(Package, CudaPackage):
             description='Use slower C++ Jsonnet instead of Go Jsonnet')
     variant('hdf', default=False,
             description='Add support for HDF5')
-    variant('root', default=False,
+    variant('root', default=True,
             description='Add support for ROOT')    
     variant('glpk', default=False,    
             description='Add support for GLPK')

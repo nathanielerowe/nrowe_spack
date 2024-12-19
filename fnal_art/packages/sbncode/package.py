@@ -144,6 +144,7 @@ class Sbncode(CMakePackage):
     depends_on("protobuf")
     depends_on("nusimdata")
     depends_on("sbndata")
+    depends_on("python@3.10")
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -236,6 +237,7 @@ class Sbncode(CMakePackage):
         sanitize_environments(spack_env)
 
     def setup_run_environment(self, run_env):
+        run_env.prepend_path("LD_LIBRARY_PATH", self.spec["python@3.10"].prefix.lib)
         # Binaries.
         run_env.prepend_path("PATH", os.path.join(self.prefix, "bin"))
         # Ensure we can find plugin libraries.
