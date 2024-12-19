@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
-from spack.package import *
 from spack.pkg.fnal_art.fnal_github_package import *
 
 
@@ -14,6 +13,7 @@ class Larpandoracontent(CMakePackage, FnalGithubPackage):
     repo = "LArSoft/larpandoracontent"
     version_patterns = ["v02_07_02", "04.07.01"]
 
+    version("04.10.00", sha256="6d09505f29835dd6f1c994491a67f4f04f06a5eb7724c9fe4f5364d2ff28ec32")
     version("04.08.01", sha256="9f46fc1183d0828f064a4ad1ab0cf6ef4b317d306920c83aa11f9a90bc45a48d")
     version("develop", branch="develop", get_full_repo=True)
 

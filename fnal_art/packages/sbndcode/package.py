@@ -40,7 +40,9 @@ class Sbndcode(CMakePackage):
 
     version("develop", branch="develop", git=git_base, get_full_repo=True)
     version("09.93.01.01", tag="v09_93_01_01", git=git_base, get_full_repo=True)
+    version("09.93.01", tag="v09_93_01", git=git_base, get_full_repo=True)
     version("09.91.02.02", tag="v09_91_02_02", git=git_base, get_full_repo=True)
+    version("09.91.02.01", tag="v09_91_02_01", git=git_base, get_full_repo=True)
     version("09.90.00", tag="v09_90_00", git=git_base, get_full_repo=True)
     version("09.32.00", tag="v09_32_00", git=git_base, get_full_repo=True)
     version("09.10.00", tag="v09_10_00", git=git_base, get_full_repo=True)
@@ -48,7 +50,10 @@ class Sbndcode(CMakePackage):
 
     patch("v09_32_00.patch", when="@9.32.00")
     patch("v09_90_00.patch", when="@9.90.00")
-    patch("v09_91_02_02.patch", when="@9.91.02")
+    patch("v09_91_02_02.patch", when="@9.91.02.02")
+    patch("v09_91_02_01.patch", when="@9.91.02.01")
+    # patch("v09_93_01.patch", when="@09.93.01")
+    patch("v09_93_01_01.patch", when="@09.93.01.01")
 
     variant(
         "cxxstd",
@@ -107,8 +112,15 @@ class Sbndcode(CMakePackage):
     depends_on("sqlite", type=("build", "run"))
     depends_on("trace", type=("build", "run"))
     depends_on("dk2nudata", type=("build", "run"))
-    depends_on("sbncode", type=("build", "run"))
 
+
+    depends_on("sbncode@09.91.02.01", type=("build", "run"), when="@09.91.02.02")
+    depends_on("sbncode@09.91.02.01", type=("build", "run"), when="@09.91.02.01")
+    depends_on("cetmodules@3.24.01", type=("build", "run"), when="@09.91.02.01")
+    depends_on("sbnd-data@01.25.00", type=("build", "run"), when="@09.91.02.01")
+
+    depends_on("sbncode@09.91.02", type=("build", "run"), when="@09.90.00")
+    depends_on("sbnd-data@01.24.00", type=("build", "run"), when="@09.90.00")
     # added for polaris
     depends_on("larg4", type=("build", "run"))
     depends_on("larcorealg", type=("build", "run"))
@@ -124,6 +136,19 @@ class Sbndcode(CMakePackage):
     depends_on("nugen", type=("build", "run"))
     depends_on("larsimdnn", type=("build", "run"))
     depends_on("sbnd-data", type=("build", "run"))# Made from scratch
+    depends_on("vdt", type=("build", "run"))
+
+    # couldn't find cmake files
+    # depends_on("sbnanaobj", type=("build", "run"))
+    # depends_on("sbnobj", type=("build", "run"))
+    depends_on("sbncode", type=("build", "run"))
+
+    # 09.90.00 UPS dependencies
+    # depends_on("sbncode@09.90.00", type=("build", "run"), when="@09.90.00")
+    # depends_on("cetmodules@3.24.01", type=("build"), when="@09.90.00")
+    # depends_on("sbnd_data@01.24.00", type=("build", "run"), when="@09.90.00")
+    # depends_on("sbndutil@09.90.00", type=("build", "run"), when="@09.90.00")
+
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -144,7 +169,12 @@ class Sbndcode(CMakePackage):
             "-DCMAKE_PREFIX_PATH={0}/lib/python{1}/site-packages/torch".format(
                 self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
             ),
-        ]
+            "-DTorch_DIR={0}/lib/python{1}/site-packages/torch/share/cmake/Torch".format(
+                    self.spec["py-torch"].prefix, "3.11")
+            # ,"-DTorch_DIR={0}/lib/python{1}/site-packages/torch/share/cmake/Torch".format(
+            #         self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2))
+
+            ]
         return args
 
     def setup_build_environment(self, spack_env):

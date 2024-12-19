@@ -5,7 +5,6 @@
 
 import spack.util.spack_json as sjson
 from spack import *
-from spack.package import *
 
 
 def sanitize_environments(*args):
@@ -33,6 +32,7 @@ class IfdhArt(CMakePackage):
     url = "https://github.com/art-framework-suite/ifdh-art/archive/refs/tags/v2_12_05.tar.gz"
     list_url = "https://api.github.com/repos/art-framework-suite/ifdh-art/tags"
 
+    version("2.17.06", sha256="fed29b9ca80e8e956b8d60e915f94972ee50ed42fce346dd6f2151420d22b455")
     version("2.17.04", sha256="f65650ce3728620968eee6c7612469c1a669e34e84e4251dda0c9d7c9a00ac31")
     version("2.17.01", sha256="40874945c3af876bef9b668e296726ab834bc9bcd6cd11c6ff73fcfc29dd870b")
     version("2.17.00", sha256="d6f10c2516450550f48441f58867456a3dbdccd1c80d6a61bff7095becba3751")

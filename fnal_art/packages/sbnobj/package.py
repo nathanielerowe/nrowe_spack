@@ -7,7 +7,6 @@ import os
 import sys
 
 from spack import *
-from spack.package import *
 
 libdir = "%s/var/spack/repos/fnal_art/lib" % os.environ["SPACK_ROOT"]
 if libdir not in sys.path:
@@ -49,6 +48,7 @@ class Sbnobj(CMakePackage):
         git=git_base,
         get_full_repo=True,
     )
+    version("09.19.05", sha256="2e520d8cf0433790964bbb911e4f7d36cc4b0cc29133c11df838684fdbe195c0")
     version("09.19.04", sha256="78b7c15159ec33db8beb5105795ff026a5e251dc0a1bbe4845725e1a02633ba1")
     version("09.19.02", sha256="292e37da8f10549d4cdfbfef4743419d974076b4c0333823c9539faa780414bc")
     version("09.12.12", sha256="60f4f1d437cad1b1573c5f56186a48edbeab1431ccdeb0bcbe8d62fc3c7b21b0")
@@ -66,6 +66,7 @@ class Sbnobj(CMakePackage):
         description="Use the specified C++ standard when building.",
     )
 
+    patch("v09_19_05.patch", when="@09.19.05")
     patch("v09_19_04.patch", when="@09.19.04")
     patch("v09_19_02.patch", when="@09.19.02")
     patch("v09_12_12.patch", when="@09.12.12")
@@ -118,6 +119,7 @@ class Sbnobj(CMakePackage):
     depends_on("nutools", type=("build", "run"))
     depends_on("postgresql", type=("build", "run"))
     depends_on("root", type=("build", "run"))
+    depends_on("vdt", type=("build", "run"))
     depends_on("range-v3", type=("build", "run"))
     depends_on("sbndaq-artdaq-core", type=("build", "run"))
     depends_on("sqlite", type=("build", "run"))

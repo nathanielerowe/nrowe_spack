@@ -5,7 +5,6 @@
 
 
 from spack import *
-from spack.package import *
 
 
 class Crc32c(CMakePackage):

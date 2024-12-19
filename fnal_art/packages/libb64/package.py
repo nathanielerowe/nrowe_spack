@@ -5,7 +5,6 @@
 
 
 from spack import *
-from spack.package import *
 
 
 class Libb64(MakefilePackage):

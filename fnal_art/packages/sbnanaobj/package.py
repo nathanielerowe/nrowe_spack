@@ -21,7 +21,6 @@
 # ----------------------------------------------------------------------------
 
 from spack import *
-from spack.package import *
 
 
 class Sbnanaobj(CMakePackage):
@@ -30,6 +29,7 @@ class Sbnanaobj(CMakePackage):
     homepage = "https://www.example.com"
     url = "https://github.com/SBNSoftware/sbnanaobj/archive/refs/tags/v09_17_04.tar.gz"
 
+    version("09.23.02.01", sha256="88bf520e81e96311e62487efa4b01baed07e17ed4ab097ed31eaea792db0fea9")
     version("09.23.02", sha256="be2ea1ab0f6e99e30608b41b851694d7e14e1d30abbd66f18d11956c78700bbf")
     version(
         "09.17.06.06", sha256="e943ca9411282fdd1d3d8b635b706d777722857426488188b39d2bb6c9cd3947"

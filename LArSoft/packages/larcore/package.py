@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
-from spack.package import *
 from spack.pkg.fnal_art.fnal_github_package import *
 from spack.util.prefix import Prefix
 
@@ -17,6 +16,7 @@ class Larcore(CMakePackage, FnalGithubPackage):
 
     # version("10.00.00", sha256="be9c65b7a51d251ad167a1fcf0b51a11c0edcc992978a31c5fdedbcc2474c039")
     # version("10.00.00", sha256="be9c65b7a51d251ad167a1fcf0b51a11c0edcc992978a31c5fdedbcc2474c039")
+    version("09.11.02", sha256="277aea73d011cfb887bcc29fd7a97736ba4ab9f8fdd36a2a8de1e4d0e2255cd0")
     version("09.11.01", sha256="60c85fab1f622274d6750c6578d372ad5c6d0fd28a857e79c82bcfcd828c6b09")
     version("develop", branch="develop", get_full_repo=True)
 

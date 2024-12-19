@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
-from spack.package import *
 from spack.pkg.fnal_art.fnal_github_package import *
 
 
@@ -19,6 +18,7 @@ class Larsoftobj(BundlePackage, FnalGithubPackage):
     repo = "LArSoft/larsoftobj"
     version_patterns = ["v09_00_00", "09.35.00"]
 
+    version("09.36.00")
     version("09.35.03")
     version("develop", branch="develop", get_full_repo=True)
 

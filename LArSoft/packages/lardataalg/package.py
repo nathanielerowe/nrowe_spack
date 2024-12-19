@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
-from spack.package import *
 from spack.pkg.fnal_art.fnal_github_package import *
 from spack.util.prefix import Prefix
 
@@ -17,6 +16,7 @@ class Lardataalg(CMakePackage, FnalGithubPackage):
 
 
     # version("10.00.00", sha256="4ffbad40ad4dd5c4db0b7249eabd602644f536585dc86880f52f155a94438395")
+    version("09.17.07", sha256="34494af1bf6a7486cc1001fdce969decef8b070838eece1852cac85b57143aa1")
     version("09.17.03", sha256="51097ce209b23101a05ea4b50b7ec5e936ba1762985f5f996d5f4de6b9cbe911")
     version("develop", branch="develop", get_full_repo=True)
 

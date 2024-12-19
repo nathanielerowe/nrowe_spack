@@ -7,7 +7,6 @@ import os
 import sys
 
 from spack import *
-from spack.package import *
 
 
 def sanitize_environments(env, *vars):
@@ -30,6 +29,7 @@ class ArtdaqCore(CMakePackage):
     version("v3_11_00", commit="5dcbc0400e6bedd10f43e8201e7fc32fff0be5a9")
     version("v3_10_03", commit="32e7447b789e6e1a376ff9e1653e2e5510e8dcc1")
     version("v3_10_02", commit="aec92f2c0d0889e14f60e089eb2326e42b6bf2a0")
+    version("3.10.02", commit="aec92f2c0d0889e14f60e089eb2326e42b6bf2a0")
     version("v3_10_01", commit="7d6acf8b30342e1046ae9efdfd3d1b85ba678834")
     version("v3_09_16", sha256="07f6b6d5e26350089976b820f62bbee37a3361e94c4e4f1f8d62a276e388bb9b")
     version("v3_09_15", sha256="08404c2592292cd9e90bb3e1a0999e62d05412a2a0c949982a24ada43b900388")

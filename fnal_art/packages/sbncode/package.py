@@ -7,7 +7,6 @@ import os
 
 import spack.util.spack_json as sjson
 from spack import *
-from spack.package import *
 
 
 def sanitize_environments(*args):
@@ -39,6 +38,8 @@ class Sbncode(CMakePackage):
 
     version("develop", branch="develop", git=git_base, get_full_repo=True)
     # version("09.91.02.02", commit="2f5452ff614c474f7de3d53fb11da3afe7247ee6681552e702772a663363fcc2", submodules=True)
+    version("09.93.01", commit="ccdf1cbf7570564cff544edc5c39037e790b4817", submodules=True)
+    version("v09_93_01_p01", commit="b67723df67c57e7325c4baf3825760c6683f1c7a", submodules=True)
     version("09.91.02.01", commit="bf374b540b658d2d175e048da6f43ce2e4d9c509", submodules=True)
     version("09.91.01", commit="f3da8986c43f9d9d7e674b9ab7866da314db5745", submodules=True)
 
@@ -57,6 +58,8 @@ class Sbncode(CMakePackage):
     patch("v09_37_01_03.patch", when="@09.37.01.03")
     patch("v09_91_01.patch", when="@09.91.01")
     patch("v09_91_02_01.patch", when="@09.91.02.01")
+    patch("v09_91_02_01.patch", when="@v09_93_01_p01")
+    patch("v09_91_02_01.patch", when="@09.93.01")
 
     variant(
         "cxxstd",
@@ -99,6 +102,7 @@ class Sbncode(CMakePackage):
     depends_on("larevt")
     depends_on("larrecodnn")# added
     depends_on("larsoft")# added
+    depends_on("larsoft@09.91.02", when="@09.91.02.01")# added
     depends_on("larg4")# added
     depends_on("pandora")
     depends_on("larpandora")
@@ -106,6 +110,7 @@ class Sbncode(CMakePackage):
     depends_on("py-torch")
     depends_on("py-tensorflow")
     depends_on("larreco")
+    depends_on("larreco@09.25.04", when="@09.91.02.01")
     depends_on("larsim")
     depends_on("libwda")
     depends_on("marley")
@@ -121,6 +126,7 @@ class Sbncode(CMakePackage):
     depends_on("log4cpp")
     depends_on("range-v3")
     depends_on("sbnobj")
+    depends_on("sbnobj@09.19.04", when="@09.91.02.01")
     depends_on("sbnanaobj")
     depends_on("sbndaq-artdaq-core")
     depends_on("sqlite")
@@ -136,6 +142,7 @@ class Sbncode(CMakePackage):
     depends_on("nusystematics")
     depends_on("protobuf")
     depends_on("nusimdata")
+    depends_on("sbndata")
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -246,6 +253,9 @@ class Sbncode(CMakePackage):
         # Larcv modules
         run_env.prepend_path("LARCV_LIBDIR", self.spec["larcv2"].prefix.lib)
         run_env.prepend_path("LARCV_INCDIR", self.spec["larcv2"].prefix.include)
+        # fcl file prefix
+        run_env.prepend_path("FHICL_FILE_PATH", self.prefix.fcl)
+        run_env.prepend_path("FHICL_INCLUDE_PATH", self.prefix.fcl)
         # Cleaup.
         sanitize_environments(run_env)
 

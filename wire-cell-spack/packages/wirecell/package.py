@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
-from spack.package import *
 
 class Wirecell(Package, CudaPackage):
     """Toolkit for Liquid Argon TPC Reconstruction and Visualization ."""
@@ -130,8 +129,6 @@ class Wirecell(Package, CudaPackage):
             for cc in CudaPackage.cuda_arch_values:
                 depends_on(f"py-torch +cuda cuda_arch={cc}",
                            when=f"cuda_arch={cc}")
-
-
     # Suggested:
 
     depends_on('intel-tbb @2021.7.0: cxxstd=17', when='+tbb')
@@ -199,9 +196,9 @@ class Wirecell(Package, CudaPackage):
         else:
             cfg += [ "--with-cuda=no" ]
 
-        if spec.satisfies('torch'):
+        if spec.satisfies('+torch'):
             cfg.append( "--with-libtorch={0}/lib/python{1}/site-packages/torch".format(
-                spec['torch'].prefix, spec['python'].version.up_to(2)) )
+                spec['py-torch'].prefix, spec['python'].version.up_to(2)) )
 
         else:
             cfg.append( "--with-libtorch=no" )
@@ -221,4 +218,5 @@ class Wirecell(Package, CudaPackage):
 
     def setup_run_environment(self, env):
         env.prepend_path("WIRECELL_PATH", self.prefix.share.wirecell);
-
+        if 'cuda' in self.spec:
+          env.prepend_path("LD_LIBRARY_PATH", self.spec["cuda"].prefix.lib64)

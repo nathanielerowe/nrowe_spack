@@ -11,15 +11,11 @@ class Larfinder(CMakePackage):
     """Common cmake bits for larsoft"""
 
     homepage = "https://github.com/LArSoft"
-    url = "https://github.com/LArSoft/larfinder/archive/refs/tags/LARSOFT_SUITE_v09_90_01.tar.gz"
+    url = "https://github.com/LArSoft/larfinder/archive/tags/v09_00_01.tar.gz"
 
     maintainers = ["marcmengel"]
 
-    def url_for_version(self, version):
-        html_prefix = "https://github.com/LArSoft/larfinder/archive/refs/tags"
-        return f"{html_prefix}/LARSOFT_SUITE_v{version.underscored}.tar.gz"
-
-    version("09.90.01", sha256="129d20e548eec79292dc43567aa200a65c2e48385f00000f3c54bd1e20152761")
+    version("09_00_01", sha256="cfd2ce200a032e2e7cc7e8c510d2719965fb17e5571132e18be8574ad8a20144")
     version("develop", branch="develop", get_full_repo=True)
 
     depends_on("cetmodules", type="build")

@@ -7,7 +7,6 @@ import os
 
 import spack.util.spack_json as sjson
 from spack import *
-from spack.package import *
 
 
 def sanitize_environments(*args):
@@ -35,6 +34,7 @@ class Larsim(CMakePackage):
     list_url = "https://api.github.com/repos/LArSoft/larsim/tags"
 
     # version("10.00.00", sha256="9f4369420f5250ebbf3b8c32927c9d4aaaab69a7383a43451b0ee54a106a8d30")
+    version("09.45.00", sha256="71a8a0f5db0aae4d18057d55735ec4ef03be23b98c03f09fce0c3eab8ac8322f")
     version("09.44.01", sha256="862619a46a871c199be6b07da4ff544d399887a9725750b3a5fe2997e2add48e")
     version("09.38.06", sha256="be8cc87ea901a5efdcfb91bb9810eee94a0cf860316174ab6ab1cf20c147883b")
     version("09.38.03", sha256="e16fd69ed9acc368563334efbc986d73fb7a085c8201670822d97a314566f52b") # FIX ME

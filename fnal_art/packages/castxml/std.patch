@@ -1,0 +1,35 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 43d5c82..15e4281 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -128,7 +128,7 @@ else()
+   set(CMAKE_CXX_EXTENSIONS OFF)
+ endif()
+ if(LLVM_VERSION_MAJOR GREATER 9)
+-  set(CMAKE_CXX_STANDARD 14)
++  set(CMAKE_CXX_STANDARD 17)
+ else()
+   set(CMAKE_CXX_STANDARD 11)
+ endif()
+diff --git a/src/RunClang.cxx b/src/RunClang.cxx
+index 40c9d31..66d59a5 100644
+--- a/src/RunClang.cxx
++++ b/src/RunClang.cxx
+@@ -777,7 +777,7 @@ int runClang(const char* const* argBeg, const char* const* argEnd,
+               if (msvc_lang >= 201703L) {
+                 args.push_back("-std=c++17");
+               } else {
+-                args.push_back("-std=c++14");
++                args.push_back("-std=c++17");
+               }
+             } else if (msc_ver >= 1600) {
+               args.push_back("-std=c++11");
+@@ -824,7 +824,7 @@ int runClang(const char* const* argBeg, const char* const* argEnd,
+           } else if (std_date >= 201406L) {
+             std_flag += "1z";
+           } else if (std_date >= 201402L) {
+-            std_flag += "14";
++            std_flag += "17";
+           } else if (std_date >= 201103L) {
+             std_flag += "11";
+           } else {

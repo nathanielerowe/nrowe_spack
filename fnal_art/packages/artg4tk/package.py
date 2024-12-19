@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
-from spack.package import *
 
 
 class Artg4tk(CMakePackage):
@@ -14,6 +13,8 @@ class Artg4tk(CMakePackage):
     git = "https://github.com/art-framework-suite/art-g4tk.git"
     url = "https://github.com/art-framework-suite/art-g4tk/archive/refs/tags/v11_00_01.tar.gz"
 
+    version('12.00.03', sha256='af0f43f441cb901a914f7f1f50ad79392a295f56e3126b49d584809e2c8e735c')
+    version('12.00.03', tag="v12_00_03", get_full_repo=True)
     version('10.04.00', sha256='44a1e12425ff2ebe90f7482ad2b10cbde873477815f81707677eb2ad14d3cef4')
     version("10.04.00", tag="v10_04_00", get_full_repo=True)
     version("c06a0ed7a0", commit="c06a0ed7a0a543cba5c23fc588f7dd6dcb6609e2", get_full_repo=True)

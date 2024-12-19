@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack import *
-from spack.package import *
 from spack.pkg.fnal_art.fnal_github_package import *
 from spack.util.prefix import Prefix
 
@@ -15,6 +14,7 @@ class Larg4(CMakePackage, FnalGithubPackage):
     repo = "LArSoft/larg4"
     version_patterns = ["v09_00_00", "09.18.00"]
 
+    version("09.19.08", sha256="f5b224885ad5f95b503596f95f06ee457ef8bca8869bfbd9d9f0141e6f2a1688")
     version("09.19.03", sha256="0359f862e4a9a95f5dd1f70e37d6d577c2dc13458adf0060d13b01da30b1d751")
     version("develop", branch="develop", get_full_repo=True)
 

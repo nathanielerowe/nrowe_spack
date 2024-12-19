@@ -5,7 +5,6 @@
 
 import spack.util.spack_json as sjson
 from spack import *
-from spack.package import *
 
 
 class SbndaqArtdaqCore(CMakePackage):
@@ -18,6 +17,8 @@ class SbndaqArtdaqCore(CMakePackage):
     list_url = "https://api.github.com/repos/SBNSoftware/sbndaq-artdaq-core/tags"
 
     version("develop", git=git_base, branch="develop", get_full_repo=True)
+    version("1.09.02of1", sha256="cf38ad0bc0f3dc80fdca936b94b5e9f314ad235749632cd02cdc330397e66e97")
+    version("1.10.02", sha256="7dd4d1240f3fcde891a2431b1fd1376385dc78ead8cf131443c5a57eef606912")
     version("1.10.01", sha256="7dd4d1240f3fcde891a2431b1fd1376385dc78ead8cf131443c5a57eef606912")
     version("1.08.00of0", sha256="4b839b28a9ac17b89a3c33f840fb7cd3ae96f13c12ab461794a7dd04b144b024")
     version("1.08.00", sha256="02c5008d8b411f3edd8a67be9ae4f51fba840533693c624981a649679c0e43dd")

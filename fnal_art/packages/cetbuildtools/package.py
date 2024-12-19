@@ -22,7 +22,6 @@
 
 import spack.util.spack_json as sjson
 from spack import *
-from spack.package import *
 
 
 class Cetbuildtools(CMakePackage):
