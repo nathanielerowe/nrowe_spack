@@ -6,6 +6,7 @@
 
 from spack import *
 from spack.package import *
+from spack.package import *
 
 
 class Gfal2(CMakePackage):

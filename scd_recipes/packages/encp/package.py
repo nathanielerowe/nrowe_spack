@@ -1,6 +1,7 @@
 # fake recipe from ups_to_spack
 from spack import *
 from spack.package import *
+from spack.package import *
 import os
 
 class Encp(Package):

@@ -22,6 +22,7 @@
 
 from spack import *
 from spack.package import *
+from spack.package import *
 
 
 class PyCvs2svn(PythonPackage):
