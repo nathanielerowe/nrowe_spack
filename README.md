@@ -1,3 +1,5 @@
+This is a list of temporary expoloits to get around errors in building sbn packages with spack. It is as much a todo list for me as it is a cheatsheet for others...
+
 Error: 
 
   >> 1498    CMake Error at /lus/grand/projects/neutrinoGPU/spack_builds/spack/opt/spack/linux-sles15-zen3/gcc-12.3.0/cetmodules-3.25.00-ublvkzinygsrjc6f7qcxwm4zbfnutphc/Modules/CetMakeLibrary.cmake:456 (target_l 
@@ -11,3 +13,12 @@ Error:
 
 Solution:
 Locate the py-tensorflow installation being used under spack/opt/spack and go to cp lib/python3.9/site-packages/tensorflow/libtensorflow_framework.so.2 lib/python3.9/site-packages/tensorflow/libtensorflow_framework.so. Similar procedure with libtensorflow_cc.so.2
+
+Error:
+
+  >> 1914    /var/tmp/pbs.3117936.polaris-pbs-01.hsn.cm.polaris.alcf.anl.gov/nathanielerowe/spack-stage/spack-stage-larrecodnn-09.23.10-zv46vjh7tqzkofzhajj3ipaccm4xsgm5/spack-src/larrecodnn/ImagePatternAlgs/Tenso 
+             rflow/TF/tf_graph.cc:15:10: fatal error: tensorflow/cc/saved_model/tag_constants.h: No such file or directory                                                                                           
+     1915       15 | #include "tensorflow/cc/saved_model/tag_constants.h"
+
+Solution:
+cp https://github.com/tensorflow/tensorflow/blob/1700c9f70d0b7b26f096c76b818b64d88de86184/tensorflow/cc/saved_model/tag_constants.h into lib/python3.9/site-packages/tensorflow/include/tensorflow/cc/saved_model/tag_constants.h in your py-tensorflow installation in spack/opt/spack
