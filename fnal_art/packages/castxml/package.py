@@ -56,9 +56,10 @@ class Castxml(CMakePackage):
     patch("std.patch", when="@0.5.1")
 
     def cmake_args(self):
-        print(self.spec["llvm"].prefix.lib.clang + self.spec["llvm"].version)
+        llvm_version = self.spec["llvm"].version
         args = [
             "-DCMAKE_CXX_FLAGS=-std=c++{0}".format(self.spec.variants["cxxstd"].value),
-            "-DCLANG_RESOURCE_DIR={}".format(self.spec["llvm"].prefix.lib.clang + self.spec["llvm"].version)
+            "-DCLANG_RESOURCE_DIR={0}/{1}".format(self.spec["llvm"].prefix.lib.clang, self.spec["llvm"].version)
         ]
         return args
+

@@ -22,6 +22,8 @@ class Lardataobj(CMakePackage, FnalGithubPackage):
 
     cxxstd_variant("17", "20", default="17")
 
+    patch("dk2nu.patch")
+
     depends_on("cetmodules", type="build")
 
     depends_on("boost+test")
@@ -32,6 +34,8 @@ class Lardataobj(CMakePackage, FnalGithubPackage):
     depends_on("nusimdata")
     depends_on("larcorealg")
     depends_on("larcoreobj")
+    depends_on("dk2nudata", type="build")
+    depends_on("nufinder", type="build")
     depends_on("messagefacility")
     depends_on("root")
 

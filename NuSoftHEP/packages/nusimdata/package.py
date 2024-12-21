@@ -34,3 +34,6 @@ class Nusimdata(CMakePackage, FnalGithubPackage):
     @cmake_preset
     def cmake_args(self):
         return [self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd")]
+
+    def setup_run_environment(self, run_env):
+        run_env.prepend_path("ROOT_INCLUDE_PATH", self.spec["dk2nudata"].prefix.include)

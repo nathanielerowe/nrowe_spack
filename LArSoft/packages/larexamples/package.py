@@ -22,6 +22,8 @@ class Larexamples(CMakePackage, FnalGithubPackage):
 
     cxxstd_variant("17", "20", default="17")
 
+    patch("dk2nu.patch")
+
     depends_on("cetmodules", type="build")
 
     depends_on("art")

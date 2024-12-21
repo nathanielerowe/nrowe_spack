@@ -44,3 +44,6 @@ class Dk2nudata(CMakePackage, FnalGithubPackage):
     def setup_build_environment(self, env):
         env.set("DK2NUDATA_LIB", self.prefix.lib)
         env.set("DK2NUDATA_INC", self.prefix.include)
+
+    def setup_run_environment(self, env):
+        env.prepend_path("ROOT_INCLUDE_PATH", self.prefix.include)
