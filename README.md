@@ -22,3 +22,16 @@ Error:
 
 Solution:
 cp https://github.com/tensorflow/tensorflow/blob/1700c9f70d0b7b26f096c76b818b64d88de86184/tensorflow/cc/saved_model/tag_constants.h into lib/python3.9/site-packages/tensorflow/include/tensorflow/cc/saved_model/tag_constants.h in your py-tensorflow installation in spack/opt/spack
+
+Error:
+
+  >> 67    CMake Error at /exp/sbnd/data/users/nrowe/spack/opt/spack/linux-almalinux9-zen3/gcc-11.5.0/cetmodules-3.25.00-bshzfsyx4mu4vjbknimbeszmrrbc7m5b/Modules/compat/art/CetCMPCleaner.cmake:68 (_include):
+     68      _include called with invalid arguments: OPTIONAL used twice
+     69    Call Stack (most recent call first):
+     70      /exp/sbnd/data/users/nrowe/spack/opt/spack/linux-almalinux9-zen3/gcc-11.5.0/fftw-3.3.10-u5hi7xuvnxtn6samejzuvimbimtfbhv3/lib/cmake/fftw3/FFTW3Config.cmake:13 (include)
+     71      /exp/sbnd/data/users/nrowe/spack/opt/spack/linux-almalinux9-zen3/gcc-11.5.0/cetmodules-3.25.00-bshzfsyx4mu4vjbknimbeszmrrbc7m5b/Modules/private/CetOverrideFindPackage.cmake:177 (_find_package)
+     72      /exp/sbnd/data/users/nrowe/spack/opt/spack/linux-almalinux9-zen3/gcc-11.5.0/cetmodules-3.25.00-bshzfsyx4mu4vjbknimbeszmrrbc7m5b/Modules/FindFFTW3.cmake:20 (find_package)
+     73      /exp/sbnd/data/users/nrowe/spack/opt/spack/linux-almalinux9-zen3/gcc-11.5.0/cetmodules-3.25.00-bshzfsyx4mu4vjbknimbeszmrrbc7m5b/Modules/private/CetOverrideFindPackage.cmake:177 (_find_package)
+
+Solution:
+Manually remove OPTIONAL from the line they are referring to in FFTW3Config.cmake.
