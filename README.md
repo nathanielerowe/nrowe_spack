@@ -35,3 +35,15 @@ Error:
 
 Solution:
 Manually remove OPTIONAL from the line they are referring to in FFTW3Config.cmake.
+
+Error:
+The text leading up to this was:
+--------------------------
+|diff --git a/source/externals/g4tools/include/tools/wroot/columns.icc b/source/externals/g4tools/include/tools/wroot/columns.icc
+|index 0df2c16620..af9b15e0ab 100644
+|--- a/source/externals/g4tools/include/tools/wroot/columns.icc
+|+++ b/source/externals/g4tools/include/tools/wroot/columns.icc
+--------------------------
+
+Solution:
+File to patch: source/analysis/g4tools/include/tools/wroot/columns.icc
