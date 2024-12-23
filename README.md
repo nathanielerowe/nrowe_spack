@@ -48,3 +48,11 @@ Error:
 
 Solution:
 File to patch: source/analysis/g4tools/include/tools/wroot/columns.icc
+
+Error:
+      >> 121    CMake Error at /lus/grand/projects/neutrinoGPU/software/spack_builds/spack/opt/spack/linux-sles15-zen3/gcc-12.3.0/cmake-3.31.0-womzeasnikwb25ak337ttfzlzlvicaqc/share/cmake-3.31/Modules/FindPackageHand 
+                leStandardArgs.cmake:233 (message):                                                                                                                                                                      
+         122      Could NOT find dk2nugenie (missing: dk2nugenie_FOUND)                                                                                                                                                  
+
+Solution:
+Remove <package>_FOUND from the Find<package>.cmake file listed in the error output
