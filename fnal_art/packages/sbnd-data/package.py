@@ -31,6 +31,7 @@ class SbndData(Package):
     url_base = "https://scisoft.fnal.gov/scisoft/packages/sbnd_data/"
     # url = "https://scisoft.fnal.gov/scisoft/packages/sbnd_data/v01_24_00/sbnd_data-01.24.00-noarch.tar.bz2"
 
+    version("01_26_00", sha256="984dcde0bde1430558a9e2dd4ee8ca5ee63122a4a7aa391051f763510f58cf80", url=url_base+"v01_26_00/sbnd_data-01.26.00-noarch.tar.bz2")
     version("01_25_00", sha256="84bc68f77366c38beb1695e0c635d7ec2c8b1ff02548c03b9f79a5b9b188c4b0", url=url_base+"v01_25_00/sbnd_data-01.25.00-noarch.tar.bz2")
     version("01_24_00", sha256="36659fd880d34f7a987fc395b20abdcbc9a39a8b318ba8e47312a0d3e7893ddb", url=url_base+"v01_24_00/sbnd_data-01.24.00-noarch.tar.bz2")
 

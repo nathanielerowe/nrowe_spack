@@ -41,6 +41,7 @@ class Sbncode(CMakePackage):
     # version("09.91.02.02", commit="2f5452ff614c474f7de3d53fb11da3afe7247ee6681552e702772a663363fcc2", submodules=True)
     version("09.93.01", commit="ccdf1cbf7570564cff544edc5c39037e790b4817", submodules=True)
     version("v09_93_01_p01", commit="b67723df67c57e7325c4baf3825760c6683f1c7a", submodules=True)
+    version("v09_93_01_p02", commit="45baa22ccf40934ca65f5c5229df4c52ad1f7fbb", submodules=True)
     version("09.91.02.01", commit="bf374b540b658d2d175e048da6f43ce2e4d9c509", submodules=True)
     version("09.91.01", commit="f3da8986c43f9d9d7e674b9ab7866da314db5745", submodules=True)
 
@@ -61,6 +62,7 @@ class Sbncode(CMakePackage):
     patch("v09_91_02_01.patch", when="@09.91.02.01")
     patch("v09_91_02_01.patch", when="@v09_93_01_p01")
     patch("v09_91_02_01.patch", when="@09.93.01")
+    patch("v09_93_01_02.patch", when="@v09_93_01_p02")
 
     variant(
         "cxxstd",

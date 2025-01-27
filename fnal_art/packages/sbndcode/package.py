@@ -1,4 +1,4 @@
-# Copyright 2013-2019 Lawrence Livermore National Security, LLC and other
+ # Copyright2013-2019 Lawrence Livermore National Security, LLC and other
 # Spack Project Developers. See the top-level COPYRIGHT file for details.
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
@@ -40,6 +40,7 @@ class Sbndcode(CMakePackage):
     git_base = "https://github.com/SBNSoftware/sbndcode.git"
 
     version("develop", branch="develop", git=git_base, get_full_repo=True)
+    version("09.93.01.02", tag="v09_93_01_02rc0", git=git_base, get_full_repo=True)
     version("09.93.01.01", tag="v09_93_01_01", git=git_base, get_full_repo=True)
     version("09.93.01", tag="v09_93_01", git=git_base, get_full_repo=True)
     version("09.91.02.02", tag="v09_91_02_02", git=git_base, get_full_repo=True)
@@ -55,6 +56,7 @@ class Sbndcode(CMakePackage):
     patch("v09_91_02_01.patch", when="@9.91.02.01")
     # patch("v09_93_01.patch", when="@09.93.01")
     patch("v09_93_01_01.patch", when="@09.93.01.01")
+    patch("v09_93_01_02.patch", when="@09.93.01.02")
 
     variant(
         "cxxstd",
@@ -68,6 +70,10 @@ class Sbndcode(CMakePackage):
     depends_on("cmake@3.11:")
     depends_on("cetmodules", type="build")
     depends_on("cetbuildtools", type="build")
+    depends_on("py-tensorflow", type="build")
+    depends_on("libjpeg", type="build")
+    depends_on("libpng", type="build")
+    depends_on("giflib", type="build")
 
     # Build and link dependencies.
     depends_on("artdaq-core", type=("build", "run"))
@@ -98,6 +104,7 @@ class Sbndcode(CMakePackage):
     depends_on("larpandoracontent", type=("build", "run"))
     depends_on("py-torch", type=("build", "run"))
     depends_on("larreco", type=("build", "run"))
+    depends_on("larrecodnn", type=("build", "run"))
     depends_on("larsim", type=("build", "run"))
     depends_on("libwda", type=("build", "run"))
     depends_on("marley", type=("build", "run"))
@@ -139,17 +146,7 @@ class Sbndcode(CMakePackage):
     depends_on("sbnd-data", type=("build", "run"))# Made from scratch
     depends_on("vdt", type=("build", "run"))
 
-    # couldn't find cmake files
-    # depends_on("sbnanaobj", type=("build", "run"))
-    # depends_on("sbnobj", type=("build", "run"))
     depends_on("sbncode", type=("build", "run"))
-
-    # 09.90.00 UPS dependencies
-    # depends_on("sbncode@09.90.00", type=("build", "run"), when="@09.90.00")
-    # depends_on("cetmodules@3.24.01", type=("build"), when="@09.90.00")
-    # depends_on("sbnd_data@01.24.00", type=("build", "run"), when="@09.90.00")
-    # depends_on("sbndutil@09.90.00", type=("build", "run"), when="@09.90.00")
-
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -164,6 +161,7 @@ class Sbndcode(CMakePackage):
     def cmake_args(self):
         # Set CMake args.
         args = [
+            "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=True",
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dsbndcode_FW_DIR=fw",
             "-Dsbndcode_WP_DIR={0}".format(self.spec["wirecell"].prefix),
@@ -171,9 +169,17 @@ class Sbndcode(CMakePackage):
                 self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
             ),
             "-DTorch_DIR={0}/lib/python{1}/site-packages/torch/share/cmake/Torch".format(
-                    self.spec["py-torch"].prefix, "3.11")
-            # ,"-DTorch_DIR={0}/lib/python{1}/site-packages/torch/share/cmake/Torch".format(
-            #         self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2))
+                    self.spec["py-torch"].prefix, "3.11"),
+            "-DTensorFlow_INCLUDE_DIR={0}/lib/python{1}/site-packages/tensorflow/include".format(
+                    self.spec["py-tensorflow"].prefix, "3.9"),
+            "-DTensorFlow_LIBRARIES={0}/lib/python{1}/site-packages/tensorflow".format(
+                    self.spec["py-tensorflow"].prefix, "3.9"),
+            "-DTensorFlow_cc_LIBRARY={0}/lib/python{1}/site-packages/tensorflow/libtensorflow_framework.so".format(
+                    self.spec["py-tensorflow"].prefix, "3.9"),
+            "-DTensorFlow_framework_LIBRARY={0}/lib/python{1}/site-packages/tensorflow/libtensorflow_cc.so".format(
+                    self.spec["py-tensorflow"].prefix, "3.9"),
+
+
 
             ]
         return args
@@ -193,6 +199,7 @@ class Sbndcode(CMakePackage):
         spack_env.prepend_path("PERL5LIB", os.path.join(self.build_directory, "perllib"))
         spack_env.prepend_path("GENIE_INC", str(self.spec["genie"].prefix.include))
         spack_env.prepend_path("hep_hpc_DIR", str(self.spec["hep-hpc"].prefix))
+        spack_env.prepend_path("LD_LIBRARY_PATH", "{0}/lib/python{1}/site-packages/tensorflow".format(self.spec["py-tensorflow"].prefix, "3.9"))
         # spack_env.prepend_path("ROOT_INCLUDE_PATH", os.path.join(self.spec["sbndaq-artdaq-core"].prefix, "sbndaq-artdaq-core/Obj/SBND"))
         # Cleaup.
         sanitize_environments(spack_env)
