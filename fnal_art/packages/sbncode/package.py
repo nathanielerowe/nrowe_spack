@@ -61,8 +61,8 @@ class Sbncode(CMakePackage):
     patch("v09_91_01.patch", when="@09.91.01")
     patch("v09_91_02_01.patch", when="@09.91.02.01")
     patch("v09_91_02_01.patch", when="@v09_93_01_p01")
+    patch("v09_91_02_01.patch", when="@v09_93_01_p02")
     patch("v09_91_02_01.patch", when="@09.93.01")
-    patch("v09_93_01_02.patch", when="@v09_93_01_p02")
 
     variant(
         "cxxstd",
@@ -103,7 +103,7 @@ class Sbncode(CMakePackage):
     depends_on("lardataobj")
     depends_on("lardata")
     depends_on("larevt")
-    depends_on("larrecodnn")# added
+    depends_on("larrecodnn")# added -> should inherit py-tensorflow from this!
     depends_on("larsoft")# added
     depends_on("larsoft@09.91.02", when="@09.91.02.01")# added
     depends_on("larg4")# added
@@ -111,7 +111,7 @@ class Sbncode(CMakePackage):
     depends_on("larpandora")
     depends_on("larpandoracontent")
     depends_on("py-torch")
-    depends_on("py-tensorflow")
+    #depends_on("py-tensorflow")
     depends_on("larreco")
     depends_on("larreco@09.25.04", when="@09.91.02.01")
     depends_on("larsim")
