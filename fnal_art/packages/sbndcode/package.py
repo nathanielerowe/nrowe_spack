@@ -1,4 +1,4 @@
- # Copyright2013-2019 Lawrence Livermore National Security, LLC and other
+# Copyright2013-2019 Lawrence Livermore National Security, LLC and other
 # Spack Project Developers. See the top-level COPYRIGHT file for details.
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
@@ -40,6 +40,8 @@ class Sbndcode(CMakePackage):
     git_base = "https://github.com/SBNSoftware/sbndcode.git"
 
     version("develop", branch="develop", git=git_base, get_full_repo=True)
+    version("test", tag="v09_93_01_02rc0", git=git_base, get_full_repo=True)
+    version("09.93.01.02.01", tag="v09_93_01_02p01", git=git_base, get_full_repo=True)
     version("09.93.01.02", tag="v09_93_01_02rc0", git=git_base, get_full_repo=True)
     version("09.93.01.01", tag="v09_93_01_01", git=git_base, get_full_repo=True)
     version("09.93.01", tag="v09_93_01", git=git_base, get_full_repo=True)
@@ -238,4 +240,4 @@ class Sbndcode(CMakePackage):
         # Perl modules.
         spack_env.prepend_path("PERL5LIB", os.path.join(self.prefix, "perllib"))
         # Cleanup.
-        sanitize_environments(spack_env)
+        sanitize_environments(spack_env) 
